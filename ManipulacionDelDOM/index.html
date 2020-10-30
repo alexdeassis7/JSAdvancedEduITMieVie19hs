@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modelo jerarquico Arbol de nodos</title>
+</head>
+
+<body>
+    <header>
+        <h1>Mi web page</h1>
+    </header>
+    <main>
+        <article id="movil">
+            <p>Esta navegando en un celular</p>
+            <ul id="estatico">
+            </ul>
+        </article>
+        <script>
+            /*1)Crear una lista desordenada con 10 elementos dentro usando
+            un bucle for. Tener en cuenta que solo se le puede hacer un
+             único appendChild al ul creado, asi minimizamos el
+             tiempo de modificaciones en el DOM.*/
+            let ul = document.createElement("ul");
+
+            let frag = document.createDocumentFragment();
+            
+            for(var i = 1 ; i <= 10 ; i ++){
+                let li = document.createElement("li");
+                li.innerText = "Item " + i ;
+               
+                frag.appendChild(li);
+            }
+
+            ul.appendChild(frag);
+
+            document.getElementById('movil').appendChild(ul);
+        </script>
+    </main>
+</body>
+
+</html>
