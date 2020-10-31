@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Call Back</title>
+</head>
+
+<body>
+    <script>
+        var muestraNombre = () => { console.log('Mi nombre es alex'); }
+        var muestraEdad = (edad) => { console.log('Mi edad es ' + edad ); }
+
+        console.log('llamo a la funcion muestraNombre()');
+        muestraNombre();
+        
+        console.log('llamo a la funcion muestraEdad()');
+        muestraEdad(29);
+
+        function mifuncion(variable1 , callBackUno){
+                console.log('recibi esta variable : ' + variable1);
+                callBackUno();
+        }
+
+        mifuncion('Gabriel' , () => { console.log('recibi una funcion flecha y la ejecute!');})
+
+    </script>
+</body>
+
+</html>
