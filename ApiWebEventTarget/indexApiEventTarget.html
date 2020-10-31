@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Target</title>
+</head>
+<body>
+    <button id="MiBoton">MI BOTON</button>
+
+    <script>
+        var boton =document.getElementById("MiBoton");
+
+        var f1 = () => { console.log("Ejecute la funcion Uno");}
+        var f2 = () => { console.log("Ejecute la funcion Dos");}
+
+       /* boton.onclick = f1;
+        boton.onclick = f2;
+        */
+       boton.addEventListener("click", function(){
+            console.log("Soy el Primer CallBack");
+       });
+
+       
+       boton.addEventListener("click", function(){
+            console.log("SOY EL SEGUNDO CALL BACK ");
+       });
+    </script>
+</body>
+</html>

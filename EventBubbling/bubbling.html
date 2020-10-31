@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" onclick="procesaEvento(1)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onclick="procesaEvento(2)">
+    <div onclick="procesaEvento(3)">presiona click aqui</div>
+</body>
+<script>
+    function procesaEvento(numero) {
+        console.log(numero);
+    }
+</script>
+</html>
