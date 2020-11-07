@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <div class="gallery-container">
+        <img class="gallery-item" src="images/bk1.jpg" alt="">
+        <img class="gallery-item" src="images/bkeco1.jpg" alt="">
+        <img class="gallery-item" src="images/bkmotor2.jpg" alt="">
+        <img class="gallery-item" src="images/bknenes3.jpg" alt="">
+        <img class="gallery-item" src="images/bk3.jpg" alt="">
+        <img class="gallery-item" src="images/bkmotor4.jpg" alt="">
+        
+        <p class="parrafo" >parrafo molesto</p>
+    </div>
+
+
+    <script>
+        var gallery = document.querySelector(".gallery-container");
+
+        gallery.addEventListener('click' , e => {
+            console.log("Elemento que dispara  el evento : " + e.target);
+            console.log("event type " + e.type );
+
+            if(e.target.classList.contains('gallery-item')){
+                console.log("presionaste en un elemento de tipo IMG");
+                e.target.classList.remove("gallery-item");
+            }else{
+                console.log("presionaste en un elemento QUE NO ES de tipo IMG");
+            }
+
+        } )
+
+    </script>
+
+
+</body>
+
+</html>
