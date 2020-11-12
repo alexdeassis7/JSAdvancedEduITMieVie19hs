@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo AJAX Hola Mundo</title>
+</head>
+
+<body>
+    <h1>Soy el primer Request Async dentro de JS</h1>
+
+    <!-- <form action="#" method="GET">
+        nombre<input name="nombre" type="text">
+        apellido<input name="apellido" type="text">
+        <button type="submit">Enviar por GET</button>
+    </form> -->
+
+    <script>
+        var peticionHTTP;
+
+        function inicializar_XHR() {
+            if(window.XMLHttpRequest){
+                //Navegador moderno
+                peticionHTTP = new XMLHttpRequest();
+            }else{
+                //Navegador Antiguos 
+                peticionHTTP = new ActiveXObject("Microsoft.XMLHTTP");
+            }    
+        }
+
+        function realizarPeticion(url , metodo , funcioA){
+                peticionHTTP.onreadystatechange  = funcioA ;
+
+                peticionHTTP.open(metodo , url , true );
+                peticionHTTP.send();
+
+        }
+
+        function descargarArchivo(){
+            inicializar_XHR();
+            realizarPeticion('archivo.txt' , 'GET' , funcActuadora  )
+
+        }
+
+        function funcActuadora(){
+            alert('el Estado Del Request es : ' + peticionHTTP.readyState);  
+            if(peticionHTTP.readyState == 4){
+                if(peticionHTTP.status == 200){
+                    document.write(peticionHTTP.responseText);
+                }
+            }
+        }
+
+        window.onload = descargarArchivo;
+    </script>
+
+</body>
+
+</html>
