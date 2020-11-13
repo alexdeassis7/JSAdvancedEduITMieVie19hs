@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>Datos del Usuario</legend>
+            <div class="group" id="div1">
+                <label>Nombre</label>
+                <input id="nombre" type="text" placeholder="Ej.: Juan">
+            </div>
+        </fieldset>
+        <button id="botonFormulario" type="submit">Comentar!</button>
+    </form>
+    <script>
+            //cancelo el submit para que no recargue la pagina 
+        var btn = document.getElementById('botonFormulario');
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); console.log('Event default submit  del form Cancelado!!! ');
+        });
+            // cancelo  el evento de el input y muestro el valor ingresado en el input por consola
+            var nombreSeguridad = document.getElementById('nombre');
+            nombreSeguridad.addEventListener('blur', (e) => { e.preventDefault(); console.log('Event default Cancelado!!! valor input es : ' + document.getElementById('nombre').value) }); 
+    </script>
+</body>
+
+</html>

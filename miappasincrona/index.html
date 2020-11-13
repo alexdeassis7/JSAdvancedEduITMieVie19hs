@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+
+<body>
+    <!--AJAX  
+    acronio de : Asynchronous JavaScript And Xml
+
+    XMLHttpRequest Exchange 2000 , IE 5 , OWA
+    Alex Hopmann OWA XMLHTTP-->
+    <script>
+
+        var peticionHTTP;
+        // Funcion que nos crea el objeto adecuado segun el browser del cliente 
+        function inicializar_XHR() {
+                if(window.XMLHttpRequest){
+                    //navegador moderno
+                    peticionHTTP = new XMLHttpRequest();
+                }else{ 
+                    // navegador antiguo
+                    peticionHTTP = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+        }
+
+        /*funcion que realiza el request
+        1)url :es la url donde reaalizaremos la peticion 
+        2)metodo : aca vemos si el verbo a utilizar el GEt o POST
+        3) Funcion : una vez obtenido los datos de la url tenemos que actuar y hacer algo con eso datos 
+        */
+        function realizarPeticion( url , metodo , funcionA)
+        {
+            peticionHTTP.onreadystatechange = funcionA;
+
+            peticionHTTP.open(metodo,  url, true)
+            peticionHTTP.send(null)
+        } 
+
+        function descargarArchivo(){
+                var usuario = document.getElementById('usuario').value;
+                console.log('usuario : ' + usuario);
+                //inicializamos el objeto HTTP
+                inicializar_XHR();
+                realizarPeticion('http://localhost:8081/ValidaFormDB/ValidaUser?user=' + usuario ,'GET' ,   )
+        }
+
+        function funcActuadora(){
+            alert('hola AJAX este es el estado del REquest ' + peticionHTTP.readyState);
+            if ( peticionHTTP.readyState == 4){
+                    if(peticionHTTP.status == 200){
+                        if(peticionHTTP.responseText == 'true'){
+                            document.getElementById('respuestaServer').innerHTML ="El usuario " + document.getElementById('usuario').value +" ya existe";
+                        }else if (peticionHTTP.responseText == 'false'){
+                            document.getElementById('respuestaServer').innerHTML ="El usuario " + document.getElementById('usuario').value +" esta Disponible";
+                        }
+                    }
+
+            }
+        }
+
+        
+      
+    </script>
+
+<form action="">
+    <h1>CREAR USUARIO</h1>
+    Ingrese su Usuario : 
+    <input type="text" placeholder="ingrese su user" id="usuario" onkeyup="descargarArchivo()">
+    <br>
+    <label id="respuestaServer"></label>
+
+</form>
+</body>
+
+</html>
