@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON vs JS Object</title>
+</head>
+<body>
+
+    <!-- //ejemplo xml 
+    <lista-nodos>
+        <nodo id="1">texto1</nodo>
+        <nodo id="3">texto2</nodo>
+        <nodo id="5">texto5</nodo>
+    </lista-nodos> -->
+    <script>
+
+    //asi declaramos un objeto basico en js
+        let objeto={ atributo: 'valor'}
+      
+        //ejemplo JSON 
+        [
+           { "id": 1, "valor": "texto1"},
+           { "id": 3, "valor": "texto2"},
+           { "id": 5, "valor": "texto5"} 
+        ]
+            //ejemplo Object Java Script
+        const datos =[
+           { id: "1", valor: "texto1"},
+           { id: "3", valor: "texto2"},
+           { id: "5", valor: "texto5"} 
+        ]
+        //Y como transformamos el texto en un objeto manipulable??
+        // o como hago de un objeto un texto ??
+
+        JSON.parse(texto); //-> nos devuelve un objeto creado a partir de un string que este 
+        //en formato json
+
+        JSON.stringify(OBJ);// -> nos devuelve un string en formato JSON con los atributo 
+        //objeto OBJ , Si obj tiene atributos que sean funciones son ignorados 
+        const datosJson = `[
+           { "id": "1", "valor": "texto1"},
+           { "id": "3", "valor": "texto2"},
+           { "id": "5", "valor": "texto5"} 
+        ]`;
+
+        try {
+            
+        JSON.parse(datosJson)
+
+        }catch(error){
+            console.log("Falla porque las claves valor no estan entre comillas " ); 
+
+        }
+
+
+    </script>
+
+</body>
+</html>

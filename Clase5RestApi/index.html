@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostracion JSON REST AJAX</title>
+</head>
+
+<body>
+    <script>
+        var peticionHTTP;
+
+        function inicializar_XHR() {
+            if (window.XMLHttpRequest) {
+                peticionHTTP = new XMLHttpRequest();
+            } else {
+                peticionHTTP = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }
+
+        function realizarPeticionPOST(url, metodo, funcionA) {
+            peticionHTTP.onreadystatechange = funcionA;
+
+            peticionHTTP.open(metodo, url, true);
+            peticionHTTP.setRequestHeader("Content-type", "application/json");
+
+            var jsonData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value , 
+                phone: document.getElementById('phone').value,
+                model: "Globo MTB 29 Full Suspension",
+                serialNumber: "111112332",
+                purchasePrice: 999,
+                purchaseDate: "13-11-2020",
+                contact: true
+            }
+            //formateamos el dato a un json para enviar 
+            var formattedJsonData = JSON.stringify( jsonData);
+            //volvemos a parsear el dato (roll back)
+            console.log("json parse" + JSON.parse(formattedJsonData));
+
+            peticionHTTP.send(formattedJsonData);
+        }
+
+        function lanzarRequestAsincronico() {
+            inicializar_XHR();
+            realizarPeticionPOST('http://localhost:9090/api/v1/bikes' , 'POST' , funcActuadoraPOST );
+        }
+
+        function funcActuadoraPOST(){
+            if(peticionHTTP.readyState == 4){
+                if(peticionHTTP.status == 200){
+                    if(peticionHTTP.responseText == 'true'){
+                        document.getElementById('respuestaServer').innerHTML ="el dato fue persistido en el back end";
+                    }else {
+                        document.getElementById('respuestaServer').innerHTML ="el dato no fue persistido en el back";
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <form action="">
+        name : <input type="text" placeholder="ingrese su name" id="name">
+        <br>
+        <br>
+        email : <input type="text" placeholder="ingrese su email" id="email">
+        <br>
+        <br>
+        phone : <input type="text" placeholder="ingrese su phone" id="phone">
+        <br>
+        <br>
+        <button type="button" onclick="lanzarRequestAsincronico()">Enviar post a la API REST </button>
+    </form>
+    
+    <p id="respuestaServer"></p>
+
+
+
+
+</body>
+
+</html>
