@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduccion a Prototipos</title>
+</head>
+<body>
+    <script>// prototype === Objeto
+    //formas de crear un objeto que nos sirva como prototype
+    //forma 1 : Function constructoras
+    //forma 2 : funcion Create
+    //forma 3 : literal o Automatica 
+
+    let variable = {};
+
+    console.log(variable);
+
+    let prototipo ={
+        saludar: function(){console.log('hola soy una propiedad del prototipo');}
+    }
+
+    console.log(prototipo);
+
+    let miObj = Object.create(prototipo);
+    console.log(miObj.saludar());
+
+    let objeto = {
+            numero : 1,
+            apellido : 'de assis',
+            nombre : 'Alex',
+    };
+
+    console.log(objeto);
+
+
+    for(propiedad in objeto){
+        console.log(propiedad);
+    }
+
+    delete objeto.numero;
+    console.log(objeto);
+
+    //Propiedades de configuracion 
+    //WRITEABLE - VALUE - ENUMERABLE - CONFIGURABLE
+    let obj = Object.create(null ,{
+        numero:{
+            value: 100,
+            writable : false ,
+            enumerable :false ,
+            configurable : false,
+        }
+    })
+
+
+console.log(obj.numero);
+obj.numero = 999 ;
+console.log(obj.numero);
+
+console.log(obj);
+delete obj.numero;
+console.log(obj);
+
+for(propiedad in obj){
+        console.log(propiedad);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

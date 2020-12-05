@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEmo Geolocation API</title>
+</head>
+<body>
+    <script>
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 6000,
+            maximumAge: 0
+        }
+
+        navigator.geolocation.getCurrentPosition(success , error , options);
+
+        function success(position){
+            var coordenadas = position.coords;
+
+            console.log('Tu posicion actual es :');
+            console.log('Latitud : ' + coordenadas.latitude );
+            console.log('Longitud : ' + coordenadas.longitude );
+            console.log('Metros : ' + coordenadas.altitude );
+            console.log('grados : ' + coordenadas.heading );
+            console.log('Fecha y Hora del Dispositivo : ' + coordenadas.timestamp );
+            console.dir(coordenadas.timestamp );
+        }
+
+        function error (error){
+            console.warn('ERROR AMIGO!!' + error.code + error.message);
+        }
+    </script>
+    
+</body>
+</html>
