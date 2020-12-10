@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor New</title>
+</head>
+<body>
+
+    <script>
+        //Operador New
+
+        function Cliente(name , idClient){
+            //this. en este caso es un objeto nuevo que nos brinda el operador new 
+            this.nombre = name ;
+            this.id = idClient;
+        }
+        /*si uso la funcion con el operador new lo que pasa es que el 
+         operador new creara un objeto nuevo y vacio , pero redifiniedo el contexto con el 
+         objeto que acaba de crear
+         */
+        var miObjeto1 = new Cliente("JuanMorete" , 111);
+        var miObjeto2 = new Cliente("Martin" , 2323);
+
+        console.log(miObjeto1);
+        console.log(miObjeto2);
+        
+    </script>
+    
+</body>
+</html>

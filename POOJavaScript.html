@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POO en JS</title>
+</head>
+
+<body>
+
+    <script>
+        //FAKE CLASS
+        const person1 = {
+            name: '',
+            age: 0,
+            presented() {
+                return `Hola mi nombre es ${this.name} y tengo ${this.age} anios`;
+            }
+        }
+        const person2 = {
+            name: '',
+            age: 0,
+            presented() {
+                return `Hola mi nombre es ${this.name} y tengo ${this.age} anios`;
+            }
+        }
+
+        person1.name = 'Andres';
+        person1.age = 25;
+        console.log(person1.presented());
+
+        person2.name = 'Marcelo';
+        person2.age = 45;
+        console.log(person2.presented());
+
+
+        const p = new Object();
+        p.name = 'diego';
+        p.age = 23;
+        p.presented = function () {
+            return `Hola mi nombre es ${this.name} y tengo ${this.age} anios`;
+        }
+
+        console.log(p.presented());
+
+        //function constructors 
+        function Person(nombre, edad, apellido) {
+            this.name = nombre;
+            this.age = edad;
+            this.apellido = apellido;
+
+            this.getName = function () {
+                return this.name;
+            }
+            this.getAge = function () {
+                return this.age;
+            }
+            this.getApellido = function () {
+                return this.apellido;
+            }
+            this.presented = function () {
+                return `Hola mi nombre es ${this.getName()} ${this.getApellido()} y tengo ${this.getAge()} anios`;
+            }
+        }
+        const per1 = new Person('raulito', 77, 'martinez');
+        console.log(per1.presented());
+
+        const per2 = new Person('Jose', 90, 'gonzales');
+        console.log(per2.presented());
+
+
+        function AnyName() {
+            console.log('aqui va nuestro constructor ');
+        }
+
+        function Cliente(nombre, edad, apellido) {
+            this.name = nombre;
+            this.age = edad;
+            this.apellido = apellido;
+            var propiedadPrivate = 'yo soy una propiedad privada';
+
+            this.setPrivateProperty = function(p){
+                propiedadPrivate = p;
+            }
+            this.getPrivateProperty = function(){
+                return propiedadPrivate;                
+            }
+        }
+
+        const cl1 =  new Cliente('pepe', 34, 'argento');
+        console.log(cl1.apellido);
+        console.log(cl1.name);
+        console.log(cl1.getPrivateProperty());
+        cl1.setPrivateProperty('me cambiaste')
+        console.log(cl1.getPrivateProperty());
+        
+
+
+
+    </script>
+
+</body>
+
+</html>

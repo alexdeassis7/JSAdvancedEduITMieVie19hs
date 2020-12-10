@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia con prototipos</title>
+</head>
+
+<body>
+    <script>
+        function Person(name) {
+            this.name = name;
+
+            this.walk = function(){
+                console.log('I am Walking');
+            }
+        }
+
+        function Alumn(name, studying) {
+            //llamamos al constructor padre , nos aseguramos (utilizando la Fuction Call())
+            //que this se ha establecido durante la llamada 
+            Person.call(this, name);
+            //inicializamos las propiedades especificas del alumno 
+            this.studying = studying;
+            this.presented = function () {
+                return `Hola mi nombre es ${this.name} y estudio ${this.studying}`;
+            }
+            this.walk = function(){
+                console.log('I am Walking from the classs Alumn');
+            }
+        
+        }
+        //Creamos el objeto Alumn.prototype que herea de Person.prototype
+        //NOTA: un error comun es utilizar "new Person()" para crear Alumn.prototype
+        Alumn.prototype = Object.create(Person.prototype);
+        //establecemos la propiedad "constructor" para referencias a Alumn
+        Alumn.prototype.constructor = Alumn;
+
+        var estudiante = new Alumn('Matias', 'Programacion orientada a Objetos');
+        console.log(estudiante.presented());
+        console.log(estudiante.walk());
+
+        var persona = new Person('Alex');
+        console.log(persona.walk());
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

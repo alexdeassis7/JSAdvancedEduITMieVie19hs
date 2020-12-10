@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduccion a los Prototipos</title>
+
+</head>
+
+<body>
+    <script>
+        //Una funcion tambien es un objeto y tiene un prototipo que es el mismo prototipo
+        //que el de un objeto! , esto se debe a que js nom embebe todo dentro de un objeto
+        //funcion === Objeto 
+
+        function hola() {
+            console.log("Hola mundo !");
+        }
+        //al ver el __proto__ veremo que es el mismo 
+        //proto que el de los objetos 
+        console.log(hola);
+        //entonces ademas de ejecutarlas podriamos tarabjarlas como a los objetos , 
+        //difinamosle una propiedad:
+        hola.proiedadUno = 123;
+        console.dir(hola);
+        console.dir(hola.proiedadUno);
+
+        //Las Funciones en JS son VARIADICAS! :
+        /*osea que no dependen de la cantidad de argumentos que tengan definidos ni de la cantidad 
+        de parametros que le pasamos al invocarla para que se ejecute correctamente */
+        hola("fruta!", 1123, 'verdura'); //esto va a funcionar igual 
+
+        //Las funciones Tienen Un ambito(Scope)
+
+        /*VEAMOS EL SCOPE DE UNA FUNCION */
+
+        var variableGlobal = 100;
+
+        function miFuncion(parametroLocal) {
+            var variableLocal = 10;
+            console.log("paramtetro Local : " + parametroLocal);
+            console.log("Global : " + variableGlobal);
+            console.log("Local : " + variableLocal);
+
+        }
+
+        miFuncion(150);
+
+
+        //Closures
+        //https://developer.mozilla.org/es/docs/Web/JavaScript/Closures
+        function creaFunc() {//funcion externa
+            var nombre = "Federico";
+            function muestraNombre() { // funcion interna
+                alert(nombre);
+            }
+            return muestraNombre;
+        }
+
+        var miFunc = creaFunc();
+        miFunc();
+
+        //un ejemplo mas interesante de Closures
+        function creaSumador(x) {
+            return function (y) {
+                return x + y;
+            }
+        }
+
+        var suma5 = creaSumador(5);
+        var suma10 = creaSumador(10);
+
+        console.log(suma5(2));
+        console.log(suma10(2));
+
+        //Veamos el contexto de una Funcion
+        /*esto seria una referencia al mismo objeto que contiene a esa funcion y se accede
+        utilizando la palabra reservada this , el contexto en JS NO ES ESTATICO es decir 
+        que el this puede ir mutando ,Ejemplo:*/
+        function miFun() {
+            console.log(this); //esto retorn una referencia a window
+        }
+
+        // window.miFun() ;window es el objeto que contiene a la funcion mi fun 
+        miFun();
+
+        //en este caso el objeto que contiene a la funcion saludar() es el objeto persona
+        var persona = {
+            nombre: "alex",
+            apellido: "de assis",
+            saludar: function () {
+                console.log(this);
+            }
+        }
+
+        persona.saludar();
+
+        //ejemplo mutacion de contexto (this)
+        function contexto() {
+            console.log(this);
+        }
+
+        contexto(); //normal , window{...}
+        //apply y call nos permiten pasar como parametro el 
+        //objeto que queremos que vaya a la variable this
+
+        contexto.apply({ propiedadEnviadaX: 100 });
+        contexto.call({ propiedadEnviadaZ: 100 });
+        contexto();
+
+        function crearCliente(name, numberClient) {
+            var cliente = {
+                nombre: name,
+                id: numberClient
+            }
+            return cliente;
+        }
+        var cliente1 = crearCliente("Toconas", 18);
+        var cliente2 = crearCliente("Sergio", 28);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
