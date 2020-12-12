@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia</title>
+</head>
+
+<body>
+    <script>
+        /*Que es Extender una clase??
+        a parti de ES2015 podemos extender clases de fomra similar a como se hace en otros lenguajes ,
+        veamos un ejemplo*/
+
+        //Clase Padre
+        class Forma {
+            constructor() {
+                console.log("soy una Forma geometrica.");
+            }
+            gritar() {
+                console.log("ALOOOOOOOOOOHAAAAAAAAAAAAAAAAA ESTOY GRITANDO");
+            }
+        }
+
+        //Clases hijas 
+        class Cuadrado extends Forma {
+            constructor() {
+                //el metodo especial super() llama al constructor de la clase padre, por lo
+                /*qeu si creaamos varios objetos , funcionara en cascada, mostrando primero en texto del 
+                constructor padre , y luego el texto del constructor hijo*/
+
+                super();
+                console.log("soy un Cuadrado");
+            }
+        }
+        class Circulo extends Forma {
+            constructor() {
+                super();
+                console.log("soy un Circulo");
+            }
+        }
+        class Triangulo extends Forma {
+            constructor() {
+                super();
+                console.log("soy un Triangulo");
+            }
+        }
+
+        const c1 = new Cuadrado();
+        c1.gritar();
+
+        const t1 = new Triangulo()
+        t1.gritar();
+
+        /*la palabra clave Super :
+        esta hace referencia a la superclase , es decir , ala clase padre .
+        Se debe indicar de forma obligatoria en el constructor  de la clases
+        hijas que extienden de un padre , no obstante , tambien podremos utilizarlas en metodos
+        para invocar de forma opcional u obligatorio a metodo del padre para
+        para que hagan alguna tarea parcial o complementaria */
+
+        class Padre {
+            tarea() {
+                console.log("Tarea del padre...");
+            }
+        }
+
+        class Hijo extends Padre{
+            //este metodo tarea sobreescribe el metodo tarea de la clase padre ,
+            //realizando unicamente el codigo indicado en la clase hija 
+            tarea(){
+                //esto llamara y ejecutara el metodo de la clase padre , y al terminar , continuara
+                //ejecutando el metodo de la clase hija 
+                super.tarea();
+                console.log("Tarea del Hijo....");
+            }
+            //si no se indica "super.tarea()" el metodo tarea() de la clase hija sobreescribira 
+            //al de la clase padre , oculatandolo y ejecutando solo el codigo de clase hija 
+
+        }
+
+        const h1 = new Hijo();
+        h1.tarea();
+    </script>
+
+
+</body>
+
+</html>

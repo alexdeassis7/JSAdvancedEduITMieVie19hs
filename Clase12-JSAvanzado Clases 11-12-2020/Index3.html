@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades Computadas : getters & setters </title>
+</head>
+
+<body>
+<script>
+    /*Que es un Getter???
+    los getters son la forma de definir propiedades computadas de lectura de una 
+    clase, Ejemplo */
+
+    class Animal{
+        constructor(n){
+            this.nombre = n ;
+        }
+        get nombre(){
+            return "Sr. " + this._nombre + ".";
+        }
+
+        set nombre(n){
+            this._nombre = n.trim() ;
+        }
+
+        hablar(){
+            return "cuak";
+        }
+    }
+    //creaciao n de objetos
+    const pato = new Animal("Donald");
+
+    console.log(pato.nombre); 
+    pato.nombre = "        Fede       ";
+    console.log(pato.nombre);
+
+</script>
+</body>
+
+</html>
